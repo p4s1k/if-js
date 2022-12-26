@@ -1,2 +1,2 @@
-let t ="";
+const t = "";
 console.log(t);
