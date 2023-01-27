@@ -1,4 +1,4 @@
-const getColor = require("../main");
+const { getColor, sum } = require("../main");
 
 describe("getColor", () => {
   const fun = getColor();
@@ -19,5 +19,8 @@ describe("getColor", () => {
   });
   test("repeat", () => {
     expect(fun()).toBe("cyan");
+  });
+  test("sum", () => {
+    expect(sum(5)(2)).toBe(7);
   });
 });

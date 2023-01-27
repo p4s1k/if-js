@@ -14,7 +14,7 @@ function getColor() {
   };
 }
 
-module.exports = getColor;
+module.exports = { getColor, sum };
 
 const getColorText1 = getColor();
 const getColorText2 = getColor();
