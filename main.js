@@ -1,6 +1,4 @@
-function replacer(match, p1, p2, p3) {
-  return [p3, p2, p1].join(`.`);
-}
+const replacer = (match, p1, p2, p3) => [p3, p2, p1].join(`.`);
 
 const dateFormat = (date) => date.replace(/(\w+).(\w+).(\w+)/, replacer);
 
@@ -52,10 +50,10 @@ const data = [
 function search(word) {
   const result = [];
   for (const object of data) {
-    for (const property in object){
-      if (object[property].toLowerCase().includes(word.toLowerCase())){
-        result.push([object.country,object.city, object.hotel].join(`,`))
-        break
+    for (const property in object) {
+      if (object[property].toLowerCase().includes(word.toLowerCase())) {
+        result.push([object.country, object.city, object.hotel].join(`,`));
+        break;
       }
     }
   }
