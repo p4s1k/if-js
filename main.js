@@ -1,43 +1,40 @@
-let user = "John Doe";
-console.log(user);
-
-const student = "Pavel";
-console.log(student);
-user = student;
-//в переменной user будет лежать значение переменной Student, т.е String "Pavel"
-console.log(user);
-
-let test = 1;
-test++;
-test += "1";
-//в test лежит String "21", т.к в js Number+String=String
-console.log(test);
-test -= 1;
-//в test лежит Number "20", т.к в js Number(-,*,/)String=Number
-console.log(test);
-
-test = Boolean(test);
-//в test лежит true, т.к все Number=true, кроме "0"
-console.log(test);
-
-let array = [2, 3, 5, 8];
-let result = 1;
-
-for (const i of array) {
-  result *= i;
-}
-console.log(result);
-
-array = [2, 5, 8, 15, 0, 6, 20, 3];
-
-for (const i of array) {
-  if (i > 5 && i < 10) {
-    console.log(i);
+const palindrome = (str) => {
+  for (let i = 0; i < str.length / 2; i++) {
+    if (str[i] !== str[str.length - 1 - i]) {
+      return false;
+    }
   }
-}
+  return true;
+};
+console.log(palindrome("шалаш"));
 
-for (const i of array) {
-  if (i % 2 === 0) {
-    console.log(i);
+function min(a, b) {
+  if (a < b) {
+    return a;
   }
+  return b;
 }
+console.log(min(1, 2));
+
+function max(a, b) {
+  if (a < b) {
+    return b;
+  }
+  return a;
+}
+console.log(max(1, 2));
+
+const minArrow = (a, b) => (a < b ? a : b);
+console.log(minArrow(12, 22));
+
+const maxArrow = (a, b) => (a > b ? a : b);
+console.log(maxArrow(12, 22));
+
+function zero(array) {
+  const result = [];
+  for (const number of array) {
+    result.push(String(number).replaceAll("0", "zero"));
+  }
+  return result;
+}
+console.log(zero([0, 12, 10, 43, 40, 99, 100, 13, 31, 30]));
