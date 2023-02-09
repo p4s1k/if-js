@@ -1,8 +1,8 @@
 const replacer = (match, p1, p2, p3) => [p3, p2, p1].join(`.`);
 
-const dateFormat = (date) => date.replace(/(\w+).(\w+).(\w+)/, replacer);
+const changeDateFormat = (date) => date.replace(/(\w+).(\w+).(\w+)/, replacer);
 
-console.log(dateFormat(`2023-12-31`));
+console.log(changeDateFormat(`2023-12-31`));
 
 const data = [
   {
@@ -47,17 +47,18 @@ const data = [
   },
 ];
 
-function search(word) {
+const search = (word) => {
   const result = [];
-  for (const object of data) {
-    for (const property in object) {
-      if (object[property].toLowerCase().includes(word.toLowerCase())) {
-        result.push([object.country, object.city, object.hotel].join(`,`));
+
+  for (const destination of data) {
+    for (const destinationKey in destination) {
+      if (destination[destinationKey].toLowerCase().includes(word.toLowerCase())) {
+        result.push([destination.country, destination.city, destination.hotel].join(`,`));
         break;
       }
     }
   }
   return result;
-}
+};
 
 console.log(search(`GeRmanY`));
