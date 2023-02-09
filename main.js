@@ -52,8 +52,12 @@ const search = (word) => {
 
   for (const destination of data) {
     for (const destinationKey in destination) {
-      if (destination[destinationKey].toLowerCase().includes(word.toLowerCase())) {
-        result.push([destination.country, destination.city, destination.hotel].join(`,`));
+      if (
+        destination[destinationKey].toLowerCase().includes(word.toLowerCase())
+      ) {
+        result.push(
+          [destination.country, destination.city, destination.hotel].join(`,`)
+        );
         break;
       }
     }
