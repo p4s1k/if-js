@@ -1,11 +1,9 @@
-function sum(a) {
-  return function (b) {
-    return a + b;
-  };
-}
+export const sum = (a) => {
+  return (b) => a + b;
+};
 console.log(sum(5)(2));
 
-function getColor() {
+export function getColor() {
   const colors = ["magenta", "cyan", "firebrick", "springgreen", "skyblue"];
   let i = 0;
   return function () {
@@ -13,8 +11,6 @@ function getColor() {
     return colors[i];
   };
 }
-
-module.exports = { getColor, sum };
 
 const getColorText1 = getColor();
 const getColorText2 = getColor();
@@ -24,15 +20,18 @@ const text1 = document.getElementById("text1");
 const text2 = document.getElementById("text2");
 const text3 = document.getElementById("text3");
 
-if (text1)
+if (text1) {
   text1.addEventListener("click", (event) => {
     event.target.style.color = getColorText1();
   });
-if (text2)
+}
+if (text2) {
   text2.addEventListener("click", (event) => {
     event.target.style.color = getColorText2();
   });
-if (text3)
+}
+if (text3) {
   text3.addEventListener("click", (event) => {
     event.target.style.color = getColorText3();
   });
+}

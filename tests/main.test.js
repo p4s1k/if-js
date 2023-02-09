@@ -1,4 +1,4 @@
-const { getColor, sum } = require("../main");
+import {getColor, sum} from "../main.js";
 
 describe("getColor", () => {
   const fun = getColor();
