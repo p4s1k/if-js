@@ -34,4 +34,4 @@ if (text3) {
   text3.addEventListener("click", (event) => {
     event.target.style.color = getColorText3();
   });
-}
+}  
