@@ -49,7 +49,7 @@ const data = [
 
 const search = (word) => {
   const result = [];
-
+  
   for (const destination of data) {
     for (const destinationKey in destination) {
       if (
@@ -61,6 +61,8 @@ const search = (word) => {
         break;
       }
     }
+  for (const number of array) {
+    result.push(String(number).replaceAll("0", "zero"));
   }
   return result;
 };
