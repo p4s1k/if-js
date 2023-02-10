@@ -61,11 +61,8 @@ const search = (word) => {
         break;
       }
     }
-  for (const number of array) {
-    result.push(String(number).replaceAll("0", "zero"));
   }
   return result;
-}
-}
+};
 
 console.log(search(`GeRmanY`));
