@@ -59,16 +59,16 @@ const search = (word) =>
 console.log(search("Germany"));
 
 const citiesOfCountry = (arr) => {
-  const obj = {}
+  const obj = {};
 
-  arr.forEach( item =>{
-    if(!Object.keys(obj).includes(item.country)){
-      obj[item.country]=[]
+  arr.forEach((item) => {
+    if (!Object.keys(obj).includes(item.country)) {
+      obj[item.country] = [];
     }
-    obj[item.country].push(item.city)
-  })
+    obj[item.country].push(item.city);
+  });
 
-  return obj
+  return obj;
 };
 
 console.log(citiesOfCountry(data));
