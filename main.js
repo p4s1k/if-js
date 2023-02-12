@@ -57,3 +57,20 @@ const search = (word) =>
     .map((elem) => [elem.country, elem.city, elem.hotel].join(`,`));
 
 console.log(search("Germany"));
+
+const citiesOfCountry = (arr) => {
+  const resultObj = {};
+
+  arr.map((item) => {
+    if (!Object.keys(resultObj).includes(item.country)) {
+      resultObj[item.country] = [];
+      resultObj[item.country].push(item.city);
+    } else {
+      resultObj[item.country].push(item.city);
+    }
+  });
+
+  return resultObj;
+};
+
+console.log(citiesOfCountry(data));
