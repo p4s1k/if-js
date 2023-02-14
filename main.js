@@ -55,13 +55,11 @@ const search = (word) => {
       if (
         destination[destinationKey].toLowerCase().includes(word.toLowerCase())
       ) {
-        result.push(
-          [destination.country, destination.city, destination.hotel].join(`,`)
-        );
-        break;
+        result.push(Object.values(destination).join(","));
       }
     }
   }
+
   return result;
 };
 
