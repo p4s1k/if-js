@@ -45,30 +45,27 @@ const data = [
   },
 ];
 
-const search = (word) =>
-  data
-    .filter((elem) => {
-      for (const key in elem) {
-        if (elem[key].includes(word)) {
-          return elem;
-        }
-      }
-    })
-    .map((elem) => [elem.country, elem.city, elem.hotel].join(`,`));
+const search = (word) => {
+  const founded = [];
+
+  data.forEach((destination) => {
+    if (Object.values(destination).join(``).includes(word)) {
+      founded.push(Object.values(destination).join(`, `));
+    }
+  });
+
+  return founded;
+};
 
 console.log(search("Germany"));
 
-const citiesOfCountry = (arr) => {
-  const obj = {};
+const citiesOfCountry = (array) =>
+  array.reduce((acc, element) => {
+    acc[element.country]
+      ? acc[element.country].push(element.city)
+      : (acc[element.country] = [element.city]);
 
-  arr.forEach((item) => {
-    if (!Object.keys(obj).includes(item.country)) {
-      obj[item.country] = [];
-    }
-    obj[item.country].push(item.city);
-  });
-
-  return obj;
-};
+    return acc;
+  }, {});
 
 console.log(citiesOfCountry(data));
