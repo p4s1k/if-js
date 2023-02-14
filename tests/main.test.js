@@ -1,4 +1,4 @@
-import {getColor, sum} from "../main.js";
+import { getColor, sum } from "../main.js";
 
 describe("getColor", () => {
   const fun = getColor();
