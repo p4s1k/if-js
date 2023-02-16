@@ -1,40 +1,22 @@
-const palindrome = (str) => {
-  for (let i = 0; i < str.length / 2; i++) {
-    if (str[i] !== str[str.length - 1 - i]) {
-      return false;
-    }
-  }
-  return true;
+export const sum = (a) => (b) => a + b;
+
+console.log(sum(5)(2));
+
+const colors = ["magenta", "cyan", "firebrick", "springgreen", "skyblue"];
+
+export const getColor = () => {
+  let i = 0;
+
+  return (event) => {
+    event.target.style.color = colors[i];
+    i === colors.length - 1 ? (i = 0) : i++;
+  };
 };
-console.log(palindrome("шалаш"));
 
-function min(a, b) {
-  if (a < b) {
-    return a;
-  }
-  return b;
-}
-console.log(min(1, 2));
+const text1 = document.getElementById("text1");
+const text2 = document.getElementById("text2");
+const text3 = document.getElementById("text3");
 
-function max(a, b) {
-  if (a < b) {
-    return b;
-  }
-  return a;
-}
-console.log(max(1, 2));
-
-const minArrow = (a, b) => (a < b ? a : b);
-console.log(minArrow(12, 22));
-
-const maxArrow = (a, b) => (a > b ? a : b);
-console.log(maxArrow(12, 22));
-
-function zero(array) {
-  const result = [];
-  for (const number of array) {
-    result.push(String(number).replaceAll("0", "zero"));
-  }
-  return result;
-}
-console.log(zero([0, 12, 10, 43, 40, 99, 100, 13, 31, 30]));
+text1.addEventListener("click", getColor());
+text2.addEventListener("click", getColor());
+text3.addEventListener("click", getColor());
