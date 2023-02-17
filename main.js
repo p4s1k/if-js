@@ -49,7 +49,7 @@ const data = [
 
 const search = (word) => {
   const result = [];
-  
+
   for (const destination of data) {
     for (const destinationKey in destination) {
       if (
