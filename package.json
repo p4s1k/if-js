@@ -20,7 +20,10 @@
   },
   "homepage": "https://github.com/p4s1k/if-js#readme",
   "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
     "@ngneat/falso": "^6.4.0",
+    "babel-jest": "^29.4.2",
     "eslint": "^8.29.0",
     "eslint-plugin-jest": "^27.2.1",
     "husky": "^8.0.2",
