@@ -35,10 +35,12 @@ const deepEqual = (obj1, obj2) => {
   if (Object.keys(obj1).length !== Object.keys(obj2).length) {
     return false;
   }
+
   for (const objKey in obj1) {
     if (obj2[objKey] === undefined) {
       return false;
     }
+
     if (typeof obj1[objKey] === "object" && typeof obj2[objKey] === "object") {
       if (!deepEqual(obj1[objKey], obj2[objKey])) {
         return false;
@@ -49,6 +51,7 @@ const deepEqual = (obj1, obj2) => {
       }
     }
   }
+
   return true;
 };
 
