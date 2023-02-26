@@ -1,22 +1,20 @@
 import Student from "./Student.js";
 
 export default class Students {
-  constructor({ studentsList }) {
-    this.studentsList = studentsList;
+  constructor({ students }) {
+    this.students = students.map((student) => new Student(student));
   }
 
   getInfo() {
-    return this.studentsList
+    return this.students
+      .slice()
       .sort(
-        (firstStudentFromList, secondStudentFromList) =>
-          new Student(firstStudentFromList).course -
-          new Student(secondStudentFromList).course
+        (firstStudent, secondStudent) =>
+          firstStudent.course - secondStudent.course
       )
       .map(
-        (studentFromList) =>
-          `${new Student(studentFromList).fullName} - ${
-            new Student(studentFromList).courseName
-          }, ${new Student(studentFromList).course} курс`
+        (student) =>
+          `${student.fullName} - ${student.courseName}, ${student.course} курс`
       );
   }
 }

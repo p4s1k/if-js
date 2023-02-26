@@ -27,4 +27,4 @@ const studentsData = [
   },
 ];
 
-console.log(new Students({ studentsList: studentsData }).getInfo());
+console.log(new Students({ students: studentsData }).getInfo());

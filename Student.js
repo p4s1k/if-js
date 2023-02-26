@@ -8,6 +8,6 @@ export default class Student extends User {
   }
 
   get course() {
-    return 2023 - this.admissionYear;
+    return new Date().getFullYear() - this.admissionYear;
   }
 }
