@@ -1,8 +1,6 @@
-const replacer = (match, p1, p2, p3) => [p3, p2, p1].join(`.`);
+const palindrome = (str) => str === str.split("").reverse().join("");
 
-const changeDateFormat = (date) => date.replace(/(\w+).(\w+).(\w+)/, replacer);
-
-console.log(changeDateFormat(`2023-12-31`));
+console.log(palindrome("civic"));
 
 const data = [
   {
@@ -48,19 +46,26 @@ const data = [
 ];
 
 const search = (word) => {
-  const result = [];
+  const founded = [];
 
-  for (const destination of data) {
-    for (const destinationKey in destination) {
-      if (
-        destination[destinationKey].toLowerCase().includes(word.toLowerCase())
-      ) {
-        result.push(Object.values(destination).join(","));
-      }
+  data.forEach((destination) => {
+    if (Object.values(destination).join(``).includes(word)) {
+      founded.push(Object.values(destination).join(`, `));
     }
-  }
+  });
 
-  return result;
+  return founded;
 };
 
-console.log(search(`GeRmanY`));
+console.log(search("Germany"));
+
+const citiesOfCountry = (array) =>
+  array.reduce((acc, element) => {
+    acc[element.country]
+      ? acc[element.country].push(element.city)
+      : (acc[element.country] = [element.city]);
+
+    return acc;
+  }, {});
+
+console.log(citiesOfCountry(data));
