@@ -1,71 +1,59 @@
-const palindrome = (str) => str === str.split("").reverse().join("");
-
-console.log(palindrome("civic"));
-
-const data = [
-  {
-    country: "Russia",
-    city: "Saint Petersburg",
-    hotel: "Hotel Leopold",
+const obj1 = {
+  a: "a",
+  b: {
+    a: "a",
+    b: "b",
+    c: {
+      a: 1,
+    },
   },
-  {
-    country: "Spain",
-    city: "Santa Cruz de Tenerife",
-    hotel: "Apartment Sunshine",
+  d: 1,
+};
+const obj2 = {
+  d: 1,
+  b: {
+    c: {
+      a: 1,
+    },
+    b: "b",
+    a: "a",
   },
-  {
-    country: "Slowakia",
-    city: "Vysokie Tatry",
-    hotel: "Villa Kunerad",
+  a: "a",
+};
+const obj3 = {
+  a: {
+    c: {
+      a: "a",
+    },
+    b: "b",
+    a: "a",
   },
-  {
-    country: "Germany",
-    city: "Berlin",
-    hotel: "Hostel Friendship",
-  },
-  {
-    country: "Indonesia",
-    city: "Bali",
-    hotel: "Ubud Bali Resort&SPA",
-  },
-  {
-    country: "Netherlands",
-    city: "Rotterdam",
-    hotel: "King Kong Hostel",
-  },
-  {
-    country: "Marocco",
-    city: "Ourika",
-    hotel: "Rokoko Hotel",
-  },
-  {
-    country: "Germany",
-    city: "Berlin",
-    hotel: "Hotel Rehberge Berlin Mitte",
-  },
-];
-
-const search = (word) => {
-  const founded = [];
-
-  data.forEach((destination) => {
-    if (Object.values(destination).join(``).includes(word)) {
-      founded.push(Object.values(destination).join(`, `));
-    }
-  });
-
-  return founded;
+  b: "b",
 };
 
-console.log(search("Germany"));
+const deepEqual = (obj1, obj2) => {
+  if (Object.keys(obj1).length !== Object.keys(obj2).length) {
+    return false;
+  }
 
-const citiesOfCountry = (array) =>
-  array.reduce((acc, element) => {
-    acc[element.country]
-      ? acc[element.country].push(element.city)
-      : (acc[element.country] = [element.city]);
+  for (const objKey in obj1) {
+    if (obj2[objKey] === undefined) {
+      return false;
+    }
 
-    return acc;
-  }, {});
+    if (typeof obj1[objKey] === "object" && typeof obj2[objKey] === "object") {
+      if (!deepEqual(obj1[objKey], obj2[objKey])) {
+        return false;
+      }
+    } else {
+      if (obj1[objKey] !== obj2[objKey]) {
+        return false;
+      }
+    }
+  }
 
-console.log(citiesOfCountry(data));
+  return true;
+};
+
+console.log(deepEqual(obj1, obj2)); // true
+console.log(deepEqual(obj1, obj3)); // false
