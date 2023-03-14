@@ -10,6 +10,7 @@ const getCalendarMonth = (
     notCurrentMonth: false, // optional field - день не входит в текущий месяц
     selectedDay: false, // optional field - выбранный пользователем день
     dayOfStay: false, // optional field - день прибывания
+    currentDay: false, // optional field - флаг сегодняшнего дня
   };
 
   if (dayOfWeek > daysInWeek) {
@@ -39,6 +40,9 @@ const getCalendarMonth = (
         checkInDate <= day &&
         checkOutDate >= day;
 
+      objectOfDay.currentDay =
+        new Date().getDate() === day && !objectOfDay.notCurrentMonth;
+
       objectOfDay.dayOfMonth = day++;
 
       calendar[i].push({ ...objectOfDay });
@@ -48,11 +52,18 @@ const getCalendarMonth = (
   return calendar;
 };
 
-const daysInMonth = 31;
+const date = new Date();
+
+const daysInMonth = new Date(
+  date.getFullYear(),
+  date.getMonth() + 1,
+  0
+).getDate();
 const daysInWeek = 7;
-const dayOfWeek = 4;
+const dayOfWeek = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
 const checkInDate = 1;
 const checkOutDate = 5;
+
 const calendarMonth = getCalendarMonth(
   daysInMonth,
   daysInWeek,
