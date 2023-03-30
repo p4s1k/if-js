@@ -1,33 +1,38 @@
-const colors = {
-  data: ["magenta", "cyan", "firebrick", "springgreen", "skyblue"],
-  map: new Map(),
-  [Symbol.iterator]() {
-    return this;
-  },
-  next(id) {
-    if (!this.map.has(id)) {
-      this.map.set(id, -1);
-    }
+const changeColor = () => {
+  const iteratorOptions = {
+    colors: ["magenta", "cyan", "firebrick", "springgreen", "skyblue"],
+    from: 0,
+    to: 4,
 
-    this.map.get(id) === this.data.length - 1
-      ? this.map.set(id, 0)
-      : this.map.set(id, this.map.get(id) + 1);
+    [Symbol.iterator]() {
+      return this;
+    },
 
-    return {
-      done: true,
-      value: this.data[this.map.get(id)],
-    };
-  },
-};
+    next() {
+      if (this.current === undefined) {
+        this.current = this.from;
+      }
 
-const getColor = (id) => (event) => {
-  event.target.style.color = colors.next(id).value;
+      if (this.current < this.to + 1) {
+        return { done: false, value: this.colors[this.current++] };
+      }
+
+      if (this.current >= this.to + 1) {
+        this.current = this.from;
+        return { done: true, value: this.colors[this.current++] };
+      }
+    },
+  };
+
+  return (event) => {
+    event.target.style.color = iteratorOptions.next().value;
+  };
 };
 
 const text1 = document.getElementById("text1");
 const text2 = document.getElementById("text2");
 const text3 = document.getElementById("text3");
 
-text1.addEventListener("click", getColor(text1.id));
-text2.addEventListener("click", getColor(text2.id));
-text3.addEventListener("click", getColor(text3.id));
+text1.addEventListener("click", changeColor());
+text2.addEventListener("click", changeColor());
+text3.addEventListener("click", changeColor());
