@@ -7,7 +7,7 @@
   "scripts": {
     "test": "jest",
     "prepare": "husky install",
-    "lint": "prettier --write . && eslint main.js"
+    "lint": "prettier --write . && eslint ./src/js/main.js"
   },
   "repository": {
     "type": "git",
@@ -31,5 +31,8 @@
     "jest": "^29.4.1",
     "jest-environment-jsdom": "^29.4.1",
     "prettier": "2.8.1"
+  },
+  "dependencies": {
+    "flag-icons": "^6.6.6"
   }
 }
