@@ -1,21 +1,36 @@
-import { data } from "./data.js";
+const homesData = [];
 
-const homesCardsRowEl = document.querySelector(".homes__cards-row");
+const createHomesCards = () => {
+  const homesCardsRowEl = document.querySelector(".homes__cards-row");
 
-const homesCards = data.map(
-  (dataElement) =>
-    `<div class="card homes__card">
+  const homesCards = homesData.map(
+    ({ imageUrl, city, country, name }) =>
+      `<div class="card homes__card">
       <div class="card__image homes__card__image">
-          <img src=${dataElement.imageUrl} alt="view" />
+          <img src=${imageUrl} alt="view" />
       </div>
-      <span class="homes__card__title card__title">${dataElement.name}</span>
+      <span class="homes__card__title card__title">${name}</span>
       <span class="card__location homes__card__location">
-      ${dataElement.city}, ${dataElement.country}
+      ${city}, ${country}
       </span>
      </div>`
-);
+  );
 
-homesCardsRowEl.innerHTML = homesCards.join("\n");
+  homesCardsRowEl.innerHTML = homesCards.join("\n");
+};
+
+const promise = fetch("https://if-student-api.onrender.com/api/hotels/popular");
+
+promise
+  .then((resolve) => {
+    return resolve.json();
+  })
+  .then((responseData) => {
+    for (const dataKey in responseData) {
+      homesData.push(responseData[+dataKey]);
+    }
+    createHomesCards();
+  });
 
 const inputBlockFilterEl = document.querySelector(".input-block_filter");
 const itemFilterEl = document.querySelector(".search-form__item-filter");
