@@ -1,5 +1,3 @@
-// const homesData = [];
-
 const createHomesCards = (homesData) => {
   const homesCardsRowEl = document.querySelector(".homes__cards-row");
 
