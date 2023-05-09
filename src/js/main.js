@@ -34,6 +34,7 @@ promise
 
 const inputBlockFilterEl = document.querySelector(".input-block_filter");
 const itemFilterEl = document.querySelector(".search-form__item-filter");
+
 const counterObjects = {
   adults: {
     name: "Adults",
@@ -56,6 +57,8 @@ const counterObjects = {
 };
 
 const closeDropdown = (event) => {
+  // console.log("target", event.target)
+  // console.log("currentTarget", event.currentTarget)
   if (!inputBlockFilterEl.contains(event.target)) {
     inputBlockFilterEl
       .querySelector(".item-filter__dropdown")

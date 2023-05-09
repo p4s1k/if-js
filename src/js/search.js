@@ -25,7 +25,6 @@ const search = async (searchRequest) => {
         </div>
         `
   );
-  // hotelsElements.length=5
 
   availableSectionEl = `
     <section class="available">
