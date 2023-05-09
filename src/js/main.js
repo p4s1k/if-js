@@ -1,6 +1,6 @@
-const homesData = [];
+// const homesData = [];
 
-const createHomesCards = () => {
+const createHomesCards = (homesData) => {
   const homesCardsRowEl = document.querySelector(".homes__cards-row");
 
   const homesCards = homesData.map(
@@ -26,10 +26,7 @@ promise
     return resolve.json();
   })
   .then((responseData) => {
-    for (const dataKey in responseData) {
-      homesData.push(responseData[+dataKey]);
-    }
-    createHomesCards();
+    createHomesCards(responseData);
   });
 
 const inputBlockFilterEl = document.querySelector(".input-block_filter");
