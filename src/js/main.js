@@ -1,24 +1,40 @@
-import { data } from "./data.js";
+const createHomesCards = (homesData) => {
+  const homesCardsRowEl = document.querySelector(".homes__cards-row");
 
-const homesCardsRowEl = document.querySelector(".homes__cards-row");
-
-const homesCards = data.map(
-  (dataElement) =>
-    `<div class="card homes__card">
+  const homesCards = homesData.map(
+    ({ imageUrl, city, country, name }) =>
+      `<div class="card homes__card">
       <div class="card__image homes__card__image">
-          <img src=${dataElement.imageUrl} alt="view" />
+          <img src=${imageUrl} alt="view" />
       </div>
-      <span class="homes__card__title card__title">${dataElement.name}</span>
+      <span class="homes__card__title card__title">${name}</span>
       <span class="card__location homes__card__location">
-      ${dataElement.city}, ${dataElement.country}
+      ${city}, ${country}
       </span>
      </div>`
-);
+  );
 
-homesCardsRowEl.innerHTML = homesCards.join("\n");
+  homesCardsRowEl.innerHTML = homesCards.join("\n");
+};
+
+const loadHomesCads = async () => {
+  if (!sessionStorage.length) {
+    const promise = await fetch(
+      "https://if-student-api.onrender.com/api/hotels/popular"
+    );
+
+    const hotels = await promise.json();
+    sessionStorage.setItem("popular", JSON.stringify(hotels));
+  }
+
+  createHomesCards(JSON.parse(sessionStorage.getItem("popular")));
+};
+
+loadHomesCads();
 
 const inputBlockFilterEl = document.querySelector(".input-block_filter");
 const itemFilterEl = document.querySelector(".search-form__item-filter");
+
 const counterObjects = {
   adults: {
     name: "Adults",
@@ -41,6 +57,8 @@ const counterObjects = {
 };
 
 const closeDropdown = (event) => {
+  // console.log("target", event.target)
+  // console.log("currentTarget", event.currentTarget)
   if (!inputBlockFilterEl.contains(event.target)) {
     inputBlockFilterEl
       .querySelector(".item-filter__dropdown")
