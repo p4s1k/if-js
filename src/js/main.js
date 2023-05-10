@@ -1,6 +1,4 @@
-const homesData = [];
-
-const createHomesCards = () => {
+const createHomesCards = (homesData) => {
   const homesCardsRowEl = document.querySelector(".homes__cards-row");
 
   const homesCards = homesData.map(
@@ -19,18 +17,20 @@ const createHomesCards = () => {
   homesCardsRowEl.innerHTML = homesCards.join("\n");
 };
 
-const promise = fetch("https://if-student-api.onrender.com/api/hotels/popular");
+const loadHomesCads = async () => {
+  if (!sessionStorage.length) {
+    const promise = await fetch(
+      "https://if-student-api.onrender.com/api/hotels/popular"
+    );
 
-promise
-  .then((resolve) => {
-    return resolve.json();
-  })
-  .then((responseData) => {
-    for (const dataKey in responseData) {
-      homesData.push(responseData[+dataKey]);
-    }
-    createHomesCards();
-  });
+    const hotels = await promise.json();
+    sessionStorage.setItem("popular", JSON.stringify(hotels));
+  }
+
+  createHomesCards(JSON.parse(sessionStorage.getItem("popular")));
+};
+
+loadHomesCads();
 
 const inputBlockFilterEl = document.querySelector(".input-block_filter");
 const itemFilterEl = document.querySelector(".search-form__item-filter");
