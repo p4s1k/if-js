@@ -296,7 +296,7 @@
   display: flex;
 }
 
-.dropdown__child-age-select-container{
+.dropdown__child-age-select-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -403,7 +403,7 @@
 .card {
   --colums-size: 25%;
   box-sizing: border-box;
-  padding: 0 8px 0;
+  padding: 8px;
   flex: var(--colums-size);
 }
 
@@ -416,6 +416,8 @@
 
 .card__image {
   margin-bottom: 24px;
+  position: relative;
+  padding-bottom: 100%;
 }
 
 .card__image svg {
@@ -423,8 +425,11 @@
 }
 
 .card__image img {
-  width: 100%;
+  position: absolute;
   display: block;
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
 }
 
 .card__location {
@@ -481,16 +486,6 @@
   margin-bottom: 6px;
 }
 
-.homes__card__image {
-  max-width: 296px;
-  margin-bottom: 24px;
-  position: relative;
-}
-
-.homes__card__image img {
-  width: 100%;
-}
-
 .homes__card__title {
   color: #3077c6;
   margin-bottom: 24px;
@@ -534,6 +529,23 @@
 .arrow-button svg {
   width: 9px;
   height: 21px;
+}
+
+.available__cards-row {
+  justify-content: space-around;
+}
+
+.available__card {
+  flex-grow: 0;
+}
+
+.available__card__title {
+  color: #3077c6;
+  margin-bottom: 24px;
+}
+
+.available__card__location {
+  color: #bfbfbf;
 }
 
 .destinations-wrapper__wrapper {
@@ -635,15 +647,11 @@
 }
 
 .destinations__card__image {
-  max-width: 296px;
-  max-height: 296px;
-  margin-bottom: 24px;
   position: relative;
 }
 
 .destinations__card__image img {
-  width: 100%;
-  height: auto;
+  z-index: -1;
 }
 
 .destinations__card__title {
@@ -741,9 +749,11 @@
   width: 100%;
   position: relative;
   margin: 0;
+  padding: 0;
 }
 
 .reviews__card__image img {
+  position: initial;
   max-height: 400px;
   object-fit: cover;
 }
@@ -1184,7 +1194,7 @@
   }
 
   .card__image {
-    margin-bottom: 8px;
+    margin-bottom: 24px;
   }
 
   .card__title {
